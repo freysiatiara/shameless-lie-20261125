@@ -36,6 +36,8 @@ def self_check(text):
     words = text.split()
     if not 1 <= len(words) <= 5:
         raise SystemExit("entry must be 1-5 words")
+    if any(ord(ch) < 0x20 and ch not in "\t" for ch in text):
+        raise SystemExit("entry must not contain control characters")
     text.encode("utf-8")
 
 
